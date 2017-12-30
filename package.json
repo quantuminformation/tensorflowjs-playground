@@ -1,0 +1,31 @@
+{
+  "name": "deeplearnjs-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "build-prod": "webpack -p",
+    "deploy": "npm run build && sh deploy.sh ",
+    "watch": "webpack --watch --watch-poll ",
+    "lint": "tslint 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuantumInformation/deeplearnjs-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuantumInformation/deeplearnjs-playground/issues"
+  },
+  "homepage": "https://github.com/QuantumInformation/deeplearnjs-playground#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.4.1",
+    "deeplearn": "^0.3.16",
+    "typescript": "^2.6.2",
+    "webpack": "^3.6.0",
+    "webpack-build-notifier": "^0.1.13"
+  }
+}
