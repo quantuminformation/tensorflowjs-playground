@@ -8,7 +8,7 @@ const PATHS = {
 }
 
 module.exports = {
-
+  'mode':'development',
   entry: {
     'app': PATHS.src + '/index.ts'
   },

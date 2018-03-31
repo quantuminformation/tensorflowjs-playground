@@ -1,4 +1,4 @@
-import * as dl from 'deeplearn';
+import * as tf from '@tensorflow/tfjs';
 
 /**
  * We want to learn the coefficients that give correct solutions to the
@@ -18,14 +18,14 @@ import * as dl from 'deeplearn';
 // Step 1. Set up variables, these are the things we want the model
 // to learn in order to do prediction accurately. We will initialize
 // them with random values.
-const a = dl.variable(dl.scalar(Math.random()));
-const b = dl.variable(dl.scalar(Math.random()));
-const c = dl.variable(dl.scalar(Math.random()));
+const a = tf.variable(tf.scalar(Math.random()));
+const b = tf.variable(tf.scalar(Math.random()));
+const c = tf.variable(tf.scalar(Math.random()));
 
 
 // Step 2. Create an optimizer, we will use this later
 const learningRate = 0.01;
-const optimizer = dl.train.sgd(learningRate);
+const optimizer = tf.train.sgd(learningRate);
 
 // Step 3. Write our training process functions.
 
@@ -45,8 +45,8 @@ const optimizer = dl.train.sgd(learningRate);
  */
 function predict(input) {
   // y = a * x ^ 2 + b * x + c
-  return dl.tidy(() => {
-    const x = dl.scalar(input);
+  return tf.tidy(() => {
+    const x = tf.scalar(input);
 
     const ax2 = a.mul(x.square());
     const bx = b.mul(x);
@@ -64,7 +64,7 @@ function predict(input) {
  */
 function loss(prediction, actual) {
   // Having a good error metric is key for training a machine learning model
-  const error = dl.scalar(actual).sub(prediction).square();
+  const error = tf.scalar(actual).sub(prediction).square();
   //console.log(`error ${error.dataSync()}`)
   return error;
 }
@@ -94,12 +94,12 @@ async function train(xs, ys, numIterations, done) {
         const pred = predict(xs[i]);
         const predLoss = loss(pred, ys[i]);
 
-        return predLoss as dl.Scalar;
+        return predLoss as tf.Scalar;
       });
     }
 
-    // Use dl.nextFrame to not block the browser.
-    await dl.nextFrame();
+    // Use tf.nextFrame to not block the browser.
+    await tf.nextFrame();
   }
 
   done();
@@ -109,7 +109,7 @@ async function train(xs, ys, numIterations, done) {
  * our model.
  */
 function test(xs, ys) {
-  dl.tidy(() => {
+  tf.tidy(() => {
     const predictedYs = xs.map(predict);
     console.log('Expected', ys);
     console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
