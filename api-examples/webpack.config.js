@@ -4,17 +4,17 @@ var WebpackBuildNotifierPlugin = require('webpack-build-notifier')
 
 const PATHS = {
   src: path.join(__dirname, './src'),
-  build: path.join(__dirname, './build')
+  dist: path.join(__dirname, './dist')
 }
 
 module.exports = {
-  'mode':'development',
+  mode: 'development',
   entry: {
-    'app': PATHS.src + '/index.ts'
+    app: PATHS.src + '/index.ts'
   },
   output: {
-    path: PATHS.build,
-    filename: '[name].js',
+    path: PATHS.dist,
+    filename: '[name].js'
   },
   devtool: 'source-map',
   module: {
