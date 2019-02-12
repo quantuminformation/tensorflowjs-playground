@@ -1,6 +1,20 @@
 import * as tf from '@tensorflow/tfjs'
 
-const tf_input = () => {
+
+const tf_flatten = () => {
+
+  const input = tf.input({shape: [4, 3]});
+  const flattenLayer = tf.layers.flatten();
+// Inspect the inferred output shape of the flatten layer, which
+// equals `[null, 12]`. The 2nd dimension is 4 * 3, i.e., the result of the
+// flattening. (The 1st dimension is the undermined batch size.)
+  //console.log(JSON.stringify(flattenLayer.apply(input).shape()));
+  console.log(JSON.stringify(flattenLayer.apply(input)));
+}
+
+
+/*
+const tf_input = () => {`
   // Defines a simple logistic regression model with 32 dimensional input
   // and 3 dimensional output.
   const x = tf.input({ shape: [32] })
@@ -30,3 +44,4 @@ const tf_model = () => {
   // some fake data.
   model.predict(tf.ones([2, 5])).print()
 }
+*/
