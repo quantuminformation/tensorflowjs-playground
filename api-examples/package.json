@@ -7,7 +7,7 @@
     "build": "webpack",
     "build-prod": "webpack -p",
     "deploy": "npm run build && sh deploy.sh ",
-    "watch": "webpack --watch --watch-poll ",
+    "watch": "webpack --watch",
     "lint": "tslint 'src/**/*.ts'"
   },
   "repository": {
