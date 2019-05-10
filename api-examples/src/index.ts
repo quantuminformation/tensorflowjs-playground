@@ -1,5 +1,11 @@
 import * as tf from '@tensorflow/tfjs'
 
+let tf_model = () => {
+  const model = tf.sequential({
+    layers: [tf.layers.dense({ units: 1, inputShape: [10] })]
+  })
+  model.predict(tf.ones([8, 10]), { batchSize: 4 }).print()
+}
 const tf_flatten = () => {
   const input = tf.input({ shape: [4, 3] })
   const flattenLayer = tf.layers.flatten()
@@ -11,8 +17,7 @@ const tf_flatten = () => {
 }
 tf_flatten()
 
-/*
-const tf_input = () => {`
+const tf_input = () => {
   // Defines a simple logistic regression model with 32 dimensional input
   // and 3 dimensional output.
   const x = tf.input({ shape: [32] })
@@ -22,7 +27,7 @@ const tf_input = () => {`
 }
 
 tf_input()
-const tf_model = () => {
+tf_model = () => {
   // Define input, which has a size of 5 (not including batch dimension).
   const input = tf.input({ shape: [5] })
 
@@ -42,4 +47,3 @@ const tf_model = () => {
   // some fake data.
   model.predict(tf.ones([2, 5])).print()
 }
-*/
