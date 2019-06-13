@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "build-prod": "webpack -p",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -16,8 +18,15 @@
   "bugs": {
     "url": "https://github.com/QuantumInformation/tensorflowjs-playground/issues"
   },
+  "dependencies": {
+    "@tensorflow/tfjs": "1.1.2"
+  },
   "homepage": "https://github.com/QuantumInformation/tensorflowjs-playground#readme",
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^3.5.2",
+    "webpack": "^4.34.0",
+    "webpack-build-notifier": "^1.0.3",
+    "webpack-cli": "^3.3.4"
   }
 }
