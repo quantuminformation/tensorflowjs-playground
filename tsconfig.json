@@ -1,15 +1,10 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "sourceMap": true
-
+    "types": ["node"],
+    "lib": ["dom", "es2017"]
   },
-  "exclude": [
-    "node_modules",
-    "demo",
-    "build"
-  ]
+  "include": ["./src/**/*.ts"],
+  "alwaysStrict": true,
+  "moduleResolution": "node"
 }
-
