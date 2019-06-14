@@ -1,10 +1,13 @@
 import * as tf from '@tensorflow/tfjs'
 
+console.log(tf.getBackend());
+
+
 let tf_model = () => {
   const model = tf.sequential({
     layers: [tf.layers.dense({ units: 1, inputShape: [10] })]
   })
-  model.predict(tf.ones([8, 10]), { batchSize: 4 }).print()
+ // model.predict(tf.ones([8, 10]), { batchSize: 4 }).print()
 }
 const tf_flatten = () => {
   const input = tf.input({ shape: [4, 3] })
@@ -13,7 +16,7 @@ const tf_flatten = () => {
   // equals `[null, 12]`. The 2nd dimension is 4 * 3, i.e., the result of the
   // flattening. (The 1st dimension is the undermined batch size.)
   //console.log(JSON.stringify(flattenLayer.apply(input).shape()));
-  console.log(JSON.stringify(flattenLayer.apply(input)))
+ // console.log(JSON.stringify(flattenLayer.apply(input)))
 }
 tf_flatten()
 
@@ -23,7 +26,7 @@ const tf_input = () => {
   const x = tf.input({ shape: [32] })
   const y = tf.layers.dense({ units: 3, activation: 'softmax' }).apply(x)
   const model = tf.model({ inputs: x, outputs: y })
-  model.predict(tf.ones([2, 32])).print()
+  //model.predict(tf.ones([2, 32])).print()
 }
 
 tf_input()
