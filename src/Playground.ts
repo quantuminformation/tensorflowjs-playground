@@ -1,4 +1,4 @@
-import { Visualiser } from "./Visualiser";
+import { Visualiser } from './Visualiser'
 
 var tf = require('@tensorflow/tfjs')
 console.log(tf.getBackend())
@@ -10,11 +10,11 @@ export class Playground {
     this.setupListeners()
   }
   setupListeners() {
-    document.querySelector('#tf_input').addEventListener('click', () => {
-      this.tf_input()
+    document.querySelector('#modal').addEventListener('click', () => {
+      this.modal()
     })
-    document.querySelector('#tf_model').addEventListener('click', () => {
-      this.tf_model()
+    document.querySelector('#seq_modal').addEventListener('click', () => {
+      this.seq_modal()
     })
     document.querySelector('#tf_flatten').addEventListener('click', () => {
       this.tf_flatten()
@@ -23,12 +23,16 @@ export class Playground {
       this.tf_model2()
     })
     document.querySelector('#sigmoid').addEventListener('click', () => {
-     this.visualiser.visualiseSigmoid()
+      this.visualiser.visualiseSigmoid()
     })
   }
-  tf_model() {
+  seq_modal() {
     const model = tf.sequential({
-      layers: [tf.layers.dense({ units: 1, inputShape: [10] })]
+      layers: [
+        tf.layers.dense({ units: 3, inputShape: [10] }),
+        tf.layers.dense({ units: 2 }),
+        tf.layers.dense({ units: 3 })
+      ]
     })
     model.predict(tf.ones([8, 10]), { batchSize: 4 }).print()
   }
@@ -42,7 +46,7 @@ export class Playground {
     //  console.log(JSON.stringify(flattenLayer.apply(input)))
   }
 
-  tf_input() {
+  modal() {
     // Defines a simple logistic regression model with 32 dimensional input
     // and 3 dimensional output.
     const x = tf.input({ shape: [32] })
@@ -71,6 +75,6 @@ export class Playground {
     // The model can be used for training, evaluation and prediction.
     // For example, the following line runs prediction with the model on
     // some fake data.
-    model.predict(tf.ones([2, 5])).print()
+    model.predict(tf.ones([2, 5])).print() // tf.ones([2, 5]).print()
   }
 }

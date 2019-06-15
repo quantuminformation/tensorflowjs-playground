@@ -1,5 +1,6 @@
 import { sigmoid } from './MathUtils'
 
+// todo WIP
 export class Visualiser {
   private context2D: CanvasRenderingContext2D
   width: number
