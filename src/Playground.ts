@@ -47,11 +47,12 @@ export class Playground {
         .mean()
     }
 
-    const learningRate = 0.01
+    const learningRate = 0.02
     const optimizer = tf.train.sgd(learningRate)
 
     // Train the model.
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
+      console.log(loss(f(xs), ys).dataSync())
       optimizer.minimize(() => loss(f(xs), ys))
     }
 
@@ -70,6 +71,7 @@ export class Playground {
         tf.layers.dense({ units: 3 })
       ]
     })
+    model.summary()
     model.predict(tf.ones([8, 10]), { batchSize: 4 }).print()
   }
   tf_flatten = () => {
@@ -88,6 +90,7 @@ export class Playground {
     const x = tf.input({ shape: [32] })
     const y = tf.layers.dense({ units: 3, activation: 'softmax' }).apply(x)
     const model = tf.model({ inputs: x, outputs: y })
+    model.summary()
 
     // tf.ones([2, 32]).print();
     model.predict(tf.ones([2, 32])).print()
@@ -107,6 +110,7 @@ export class Playground {
 
     // Create the model based on the inputs.
     const model = tf.model({ inputs: input, outputs: output })
+    model.summary()
 
     // The model can be used for training, evaluation and prediction.
     // For example, the following line runs prediction with the model on
